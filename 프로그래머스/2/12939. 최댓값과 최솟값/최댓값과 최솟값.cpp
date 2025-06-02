@@ -1,13 +1,13 @@
-#include <string>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 string solution(string s) {
     string answer = "";
+    
     vector<int> v;
     string tmp="";
+    
     for(int i=0;i<s.length();i++)
     {
         if(s[i]==' ')
@@ -17,13 +17,15 @@ string solution(string s) {
         }
         else
             tmp+=s[i];
+        
+        if(i==s.length()-1)
+            v.push_back(stoi(tmp));
     }
-    v.push_back(stoi(tmp));
+    
     int min=*min_element(v.begin(),v.end());
     int max=*max_element(v.begin(),v.end());
-    answer+=to_string(min);
-    answer+=" ";
-    answer+=to_string(max);
+    
+    answer=to_string(min)+" "+to_string(max);
     
     return answer;
 }
