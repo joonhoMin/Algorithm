@@ -3,23 +3,19 @@
 using namespace std;
 
 int solution(vector<int> elements) {
-    int answer = 0;
-    int oldsize=elements.size();
-    for(int i=0;i<oldsize;i++)
-        elements.push_back(elements[i]);
+    int n = elements.size();
     set<int> s;
 
-    for(int i=0;i<oldsize;i++)
-    {
-        for(int j=1;j<=oldsize;j++)
-        {
-            int sum=0;
-            for(int k=i;k<i+j;k++)
-                sum+=elements[k];
+    vector<int> v = elements;
+    v.insert(v.end(), elements.begin(), elements.end());
+
+    for (int start = 0; start < n; start++) {
+        int sum = 0;
+        for (int len = 1; len <= n; len++) {
+            sum += v[start + len - 1];
             s.insert(sum);
         }
     }
-    
-    answer=s.size();
-    return answer;
+
+    return s.size();
 }
