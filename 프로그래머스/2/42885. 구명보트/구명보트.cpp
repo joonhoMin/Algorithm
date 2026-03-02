@@ -11,11 +11,6 @@ int solution(vector<int> people, int limit) {
     
     while(end>=start)
     {
-        if(start==end)
-        {
-            answer+=1;
-            break;
-        }
         
         if(people[start]+people[end]<=limit)
         {
