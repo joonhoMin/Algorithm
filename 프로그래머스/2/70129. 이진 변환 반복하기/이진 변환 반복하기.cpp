@@ -11,9 +11,7 @@ string tobinary(int n)
         s+=to_string(n%2);
         n/=2;
     }
-    
-    reverse(s.begin(),s.end());
-    
+       
     return s;
 }
 
