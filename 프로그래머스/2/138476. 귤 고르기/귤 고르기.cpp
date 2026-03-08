@@ -1,36 +1,37 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
 int solution(int k, vector<int> tangerine) {
+    
+    unordered_map<int,int> cnt;
+    
+    // 1. 귤 크기별 개수
+    for(int t : tangerine)
+        cnt[t]++;
+    
+    int n = tangerine.size();
+    
+    // 2. 버킷
+    vector<int> bucket(n+1,0);
+    
+    for(auto &p : cnt)
+        bucket[p.second]++;
+    
     int answer = 0;
     
-    unordered_map<int,int> m;
-    
-    for(int i=0;i<tangerine.size();i++)
+    // 3. 큰 개수부터 greedy
+    for(int i=n;i>=1;i--)
     {
-        m[tangerine[i]]+=1;
-    }
-    
-    vector<int> v;
-    
-    for(auto i: m)
-    {
-        v.push_back(i.second);
-    }
-    
-    sort(v.begin(),v.end(),greater<>());
-    
-    int i=0;
-    
-    while(1)
-    {
-        answer+=1;
-        k-=v[i++];
-        if(k<=0)
+        while(bucket[i] > 0 && k > 0)
+        {
+            k -= i;
+            bucket[i]--;
+            answer++;
+        }
+        
+        if(k <= 0)
             break;
     }
-    
     
     return answer;
 }
