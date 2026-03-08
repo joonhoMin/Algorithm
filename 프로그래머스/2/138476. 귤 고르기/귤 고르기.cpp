@@ -3,20 +3,34 @@
 using namespace std;
 
 int solution(int k, vector<int> tangerine) {
-    int answer = 1;
+    int answer = 0;
     
-    vector<int> v(10000001);
+    unordered_map<int,int> m;
+    
     for(int i=0;i<tangerine.size();i++)
     {
-        v[tangerine[i]]+=1;
+        m[tangerine[i]]+=1;
     }
-    sort(v.begin(),v.end(),greater<>());
-    for(int i=0;i<v.size();i++)
+    
+    vector<int> v;
+    
+    for(auto i: m)
     {
-        k-=v[i];
+        v.push_back(i.second);
+    }
+    
+    sort(v.begin(),v.end(),greater<>());
+    
+    int i=0;
+    
+    while(1)
+    {
+        answer+=1;
+        k-=v[i++];
         if(k<=0)
             break;
-        answer+=1;
     }
+    
+    
     return answer;
 }
