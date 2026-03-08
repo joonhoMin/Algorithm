@@ -14,7 +14,10 @@ int solution(int n) {
         {
             sum+=j;
             if(sum==n)
+            {
                 answer+=1;
+                break;
+            }
             else if(sum>n)
                 break;
         }
