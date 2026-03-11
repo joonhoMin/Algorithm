@@ -3,41 +3,29 @@
 using namespace std;
 
 vector<int> solution(vector<string> operations) {
-    vector<int> answer;
-    
-    vector<int> v;
-    
-    for(int i=0;i<operations.size();i++)
+
+    multiset<int> ms;
+
+    for(string op : operations)
     {
-        if(operations[i][0]=='I')
+        if(op[0] == 'I')
         {
-            string s="";
-            for(int j=2;j<operations[i].size();j++)
-                s+=operations[i][j];
-            v.push_back(stoi(s));
-            sort(v.begin(),v.end());
+            int num = stoi(op.substr(2));
+            ms.insert(num);
         }
-        else if(operations[i][0]=='D')
+        else
         {
-            if(v.empty())
-                continue;
-            if(operations[i][2]=='-')
-                v.erase(v.begin());
+            if(ms.empty()) continue;
+
+            if(op == "D 1")
+                ms.erase(prev(ms.end()));   // 최대 삭제
             else
-                v.pop_back();
-        } 
+                ms.erase(ms.begin());       // 최소 삭제
+        }
     }
-    
-    if(v.empty())
-    {
-        answer.push_back(0);
-        answer.push_back(0);
-    }
-    else
-    {
-        answer.push_back(v.back());
-        answer.push_back(v.front());
-    }
-    
-    return answer;
+
+    if(ms.empty())
+        return {0,0};
+
+    return { *prev(ms.end()), *ms.begin() };
 }
