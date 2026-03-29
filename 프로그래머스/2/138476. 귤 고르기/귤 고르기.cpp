@@ -14,7 +14,7 @@ int solution(int k, vector<int> tangerine) {
     // 2. 버킷
     vector<int> bucket(n+1,0);
     
-    for(auto &p : cnt)
+    for(auto p : cnt)
         bucket[p.second]++;
     
     int answer = 0;
