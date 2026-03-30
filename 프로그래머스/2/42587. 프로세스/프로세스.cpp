@@ -17,7 +17,7 @@ int solution(vector<int> priorities, int location) {
         pq.push(priorities[i]);     // 우선순위만 저장
     }
 
-    int answer = 0; // 몇 번째 실행인지
+    int answer = 1; // 몇 번째 실행인지
 
     while(!q.empty())
     {
@@ -29,11 +29,12 @@ int solution(vector<int> priorities, int location) {
         if(cur.first == pq.top())
         {
             pq.pop();   // heap에서도 제거
-            answer++;   // 실행 순서 증가
+            
 
             // 우리가 찾는 프로세스라면 종료
             if(cur.second == location)
                 return answer;
+            answer++;   // 실행 순서 증가
         }
         else
         {
