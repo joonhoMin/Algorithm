@@ -17,7 +17,7 @@ int solution(vector<int> topping) {
         right[topping[i]]++;
     }
     
-    for(int i=0;i<topping.size();i++)
+    for(int i=0;i<topping.size()-1;i++)
     {
         if(left[topping[i]]==0)
             leftkind++;
