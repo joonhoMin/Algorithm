@@ -6,7 +6,7 @@ string s="0123456789";
 
 bool isprime(long long n)
 {
-    if(n==1)
+    if(n<2)
         return false;
     for(long long i=2;i*i<=n;i++)
     {
