@@ -3,24 +3,21 @@
 using namespace std;
 
 vector<int> solution(vector<int> prices) {
-    int n = prices.size();
-    
+    int n=prices.size();
     vector<int> answer(n,0);
     
+    stack<int> st;
     
-    stack<int> s;
-    
-    for(int i=prices.size()-1;i>=0;i--)
+    for(int i=n-1;i>=0;i--)
     {
-        while(!s.empty() && prices[s.top()] >= prices[i])
-            s.pop();
-        
-        if(!s.empty())
-            answer[i]=s.top()-i;
+        while(!st.empty()&&prices[st.top()]>=prices[i])
+            st.pop();
+        if(st.empty())
+            answer[i]=n-i-1;
         else
-            answer[i]=n-1-i;
+            answer[i]=st.top()-i;
         
-        s.push(i);
+        st.push(i);
     }
     
     return answer;
