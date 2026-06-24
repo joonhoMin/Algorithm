@@ -2,8 +2,6 @@
 
 using namespace std;
 
-string s="0123456789";
-
 bool isprime(long long n)
 {
     if(n<2)
