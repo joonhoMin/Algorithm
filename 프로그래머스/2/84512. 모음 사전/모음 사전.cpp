@@ -5,19 +5,19 @@ using namespace std;
 string S="AEIOU";
 string target;
 int answer = 0;
-int cnt=0;
+int cnt=-1;
 void dfs(string nowword)
 {
-    if(nowword.length()>5)
-        return;
+    cnt+=1;
     if(nowword==target)
     {
         answer=cnt;
         return;
     }
-    cnt+=1;
     for(int i=0;i<S.size();i++)
     {
+        if(nowword.length()+1>5)
+            return;
         dfs(nowword+S[i]);
     }
     
